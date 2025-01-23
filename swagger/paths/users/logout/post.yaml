@@ -1,0 +1,28 @@
+tags:
+  - Users
+summary: User logout
+operationId: logoutUser
+description: User logout and clears session cookies
+security: []
+parameters:
+  - in: cookie
+    name: sessionId
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+responses:
+  '204':
+    description: User successfully logged out and session cookies cleared
+    headers:
+      Set-Cookie:
+        description: 'Cleared session cookies (sessionId, refreshToken)'
+        schema:
+          type: string
+          example: 'sessionId=; Path=/; HttpOnly; SameSite=Strict; Expires=Thu, 01 Jan 1970 00:00:00 GMT'
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

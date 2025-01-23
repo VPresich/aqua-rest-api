@@ -1,0 +1,38 @@
+type: object
+properties:
+  name:
+    description: User's name
+    type: string
+    example: John Doe
+  email:
+    description: User's email
+    type: string
+    format: email
+    example: 'user@example.com'
+  gender:
+    description: "Gender of the User ('male' or 'female')"
+    type: string
+    enum: ['male', 'female']
+    example: 'female'
+  weight:
+    description: "User's weight (kg)"
+    type: number
+    example: 56
+    minimum: 0
+    maximum: 500
+  sportTime:
+    description: 'Active time for sports (hours)'
+    type: number
+    example: 1
+    minimum: 0
+    maximum: 24
+  waterNorm:
+    description: 'Daily water intake norm (L)'
+    type: number
+    example: 1.8
+    minimum: 0
+    maximum: 10
+  avatar:
+    description: "Link to file with user's avatar"
+    type: string
+    format: binary

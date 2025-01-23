@@ -1,0 +1,39 @@
+tags:
+  - Water
+summary: Create water-log
+operationId: createWaterLog
+description: Create a water-log with payload
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../components/schemas/water/waterRequest.yaml'
+responses:
+  '201':
+    description: Creates a water-log
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a water-log!
+            data:
+              type: object
+              $ref: '../../components/schemas/water/waterResponse.yaml'
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

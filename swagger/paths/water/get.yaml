@@ -1,0 +1,34 @@
+tags:
+  - Water
+summary: Get list of all water-logs
+operationId: getWaterLogsForMonth
+description: 'Get list of water-logs'
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: 'Successfully found water-logs!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully found water-logs!'
+            data:
+              type: array
+              items:
+                $ref: '../../components/schemas/water/waterResponse.yaml'
+
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

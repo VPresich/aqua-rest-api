@@ -1,0 +1,35 @@
+type: object
+required:
+  - _id
+  - userId
+  - volume
+  - date
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    description: 'Unique identifier of the water-log'
+    type: string
+    example: '672e559aefd1ec206c1b77a8'
+  userId:
+    description: 'User ID associated with the contact'
+    type: string
+    example: '66a92312c1de214c68f17d10'
+  volume:
+    description: 'Volume of water'
+    type: number
+    example: 250
+  date:
+    description: 'Date of water-log'
+    type: string
+    example: '2025-01-06T10:00:00.000Z'
+  createdAt:
+    description: 'When the contact was created'
+    type: string
+    format: date-time
+    example: '2024-12-15T20:45:49.015Z'
+  updatedAt:
+    description: 'When the contact was last updated'
+    type: string
+    format: date-time
+    example: '2024-12-15T20:45:49.015Z'

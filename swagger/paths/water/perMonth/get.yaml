@@ -1,0 +1,42 @@
+tags:
+  - Water
+summary: Get list of monthly water-logs
+operationId: getWaterLogsForMonth
+description: 'Get list of water-logs for the month'
+security:
+  - bearerAuth: []
+parameters:
+  - in: query
+    name: date
+    description: 'Date to filter water logs by month. Defaults to the current date if not provided.'
+    schema:
+      type: string
+      example: '2025-01-06T10:00:00.000Z'
+
+responses:
+  '200':
+    description: 'Successfully found water-logs for the month!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully found water-logs for the month!'
+            data:
+              type: array
+              items:
+                $ref: '../../../components/schemas/water/waterForMonthResponse.yaml'
+
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

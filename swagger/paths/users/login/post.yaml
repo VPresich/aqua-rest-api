@@ -1,0 +1,59 @@
+tags:
+  - Users
+summary: User authentication
+operationId: loginUser
+description: >
+  Authenticates a user with their credentials. Returns an access token in the response body,
+  and sets refreshToken and sessionId in cookies.
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '../../../components/schemas/users/authRequest.yaml'
+responses:
+  '200':
+    description: User authenticated successfully. Cookies are set in the response.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully logged in an user!
+            data:
+              type: object
+              required:
+                - user
+                - accessToken
+              properties:
+                user:
+                  description: Short user info
+                  $ref: '../../../components/schemas/users/authResponse.yaml'
+                accessToken:
+                  description: Access token
+                  type: string
+                  example: NOfB2S2e0OVHjvJb41gxPf4Rc6gwZmblEgiC4axh
+    headers:
+      Set-Cookie:
+        description: >
+          Cookies set by the server include `refreshToken` and `sessionId`, which are HttpOnly and secure.
+        schema:
+          type: string
+          example:
+            refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9; HttpOnly; Path=/;
+            sessionId=abc123session456; HttpOnly; Path=/;
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

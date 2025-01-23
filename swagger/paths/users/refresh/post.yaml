@@ -1,0 +1,64 @@
+tags:
+  - Users
+summary: Refresh access token
+operationId: refreshToken
+description: >
+  Refreshes the access token using the refresh token and session ID stored in cookies.
+  Both cookies must be provided and valid for the operation to succeed.
+security: []
+parameters:
+  - in: cookie
+    name: refreshToken
+    schema:
+      type: string
+      example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+    required: true
+    description: The refresh token used to generate a new access token.
+  - in: cookie
+    name: sessionId
+    schema:
+      type: string
+      example: 'abc123session456'
+    required: true
+    description: Unique identifier for the user's session.
+responses:
+  '200':
+    description: Successfully refreshed the access token.
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully refreshed a session!
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  description: Newly issued access token.
+                  example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
+    headers:
+      Set-Cookie:
+        description: >
+          Cookies set by the server include `refreshToken` and `sessionId`. These cookies are
+          HttpOnly and secure, ensuring they cannot be accessed via JavaScript.
+        schema:
+          type: string
+          example: >
+            refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9; HttpOnly; Path=/;
+            sessionId=abc123session456; HttpOnly; Path=/;
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

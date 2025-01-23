@@ -1,0 +1,13 @@
+type: object
+required:
+  - volume
+properties:
+  volume:
+    description: 'Volume of water'
+    type: number
+    example: 250
+  date:
+    description: 'Date of water-log. Defaults to the current date if not provided.'
+    type: string
+    example: '2025-01-06T10:00:00.000Z'
+    default: 'current date'
