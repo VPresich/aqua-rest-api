@@ -1,9 +1,7 @@
 import { Router } from 'express';
+import usersCtrl from '../controllers/users/index.js';
 import {
-  registerUserCtrl,
-  loginUserCtrl,
   refreshUserSessionCtrl,
-  logoutUserCtrl,
   requestResetEmailCtrl,
   resetPasswordCtrl,
   getGoogleOAuthUrlCtrl,
@@ -28,18 +26,18 @@ const router = Router();
 router.post(
   '/register',
   validateBody(loginUserSchema),
-  ctrlWrapper(registerUserCtrl),
+  ctrlWrapper(usersCtrl.registerUserCtrl),
 );
 
 router.post(
   '/login',
   validateBody(loginUserSchema),
-  ctrlWrapper(loginUserCtrl),
+  ctrlWrapper(usersCtrl.loginUserCtrl),
 );
 
 router.post('/refresh', ctrlWrapper(refreshUserSessionCtrl));
 
-router.post('/logout', ctrlWrapper(logoutUserCtrl));
+router.post('/logout', ctrlWrapper(usersCtrl.logoutUserCtrl));
 
 router.post(
   '/send-reset-email',

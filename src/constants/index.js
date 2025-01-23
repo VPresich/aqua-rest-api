@@ -5,8 +5,8 @@ export const SORT_ORDER = {
   DESC: 'desc',
 };
 
-export const FIFTEEN_MINUTES = 150 * 60 * 1000;
-export const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
+export const ACCESS_TOKEN_LIFETIME = 15 * 60 * 1000;
+export const REFRESH_TOKEN_LIFETIME = 30 * 24 * 60 * 60 * 1000;
 
 export const SMTP = {
   SMTP_HOST: 'SMTP_HOST',
