@@ -1,12 +1,7 @@
 import createHttpError from 'http-errors';
+import { requestResetToken } from '../services/auth.js';
 
-import {
-  refreshUserSession,
-  // logoutUser,
-  requestResetToken,
-  resetPassword,
-  updateUser,
-} from '../services/auth.js';
+import { resetPassword, updateUser } from '../services/auth.js';
 import { REFRESH_TOKEN_LIFETIME } from '../constants/index.js';
 import { generateAuthUrl } from '../utils/googleOAuth2.js';
 import { loginOrSignupWithGoogle } from '../services/auth.js';
@@ -22,32 +17,6 @@ export const setupSession = (res, session) => {
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     expires: new Date(Date.now() + REFRESH_TOKEN_LIFETIME),
-  });
-};
-
-export const refreshUserSessionCtrl = async (req, res) => {
-  const session = await refreshUserSession({
-    sessionId: req.cookies.sessionId,
-    refreshToken: req.cookies.refreshToken,
-  });
-
-  setupSession(res, session);
-
-  res.json({
-    status: 200,
-    message: 'Successfully refreshed a session!',
-    data: {
-      accessToken: session.accessToken,
-    },
-  });
-};
-
-export const requestResetEmailCtrl = async (req, res) => {
-  await requestResetToken(req.body.email);
-  res.json({
-    status: 200,
-    message: 'Reset password email has been successfully sent.',
-    data: {},
   });
 };
 
@@ -81,6 +50,14 @@ export const loginWithGoogleCtrl = async (req, res) => {
     data: {
       accessToken: session.accessToken,
     },
+  });
+};
+export const requestResetEmailCtrl = async (req, res) => {
+  await requestResetToken(req.body.email);
+  res.json({
+    status: 200,
+    message: 'Reset password email has been successfully sent.',
+    data: {},
   });
 };
 

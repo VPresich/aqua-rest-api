@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import usersCtrl from '../controllers/users/index.js';
 import {
-  refreshUserSessionCtrl,
   requestResetEmailCtrl,
   resetPasswordCtrl,
   getGoogleOAuthUrlCtrl,
@@ -35,7 +34,8 @@ router.post(
   ctrlWrapper(usersCtrl.loginUserCtrl),
 );
 
-router.post('/refresh', ctrlWrapper(refreshUserSessionCtrl));
+ctrlWrapper(usersCtrl.loginUserCtrl),
+  router.post('/refresh', ctrlWrapper(usersCtrl.refreshUserSessionCtrl));
 
 router.post('/logout', ctrlWrapper(usersCtrl.logoutUserCtrl));
 
