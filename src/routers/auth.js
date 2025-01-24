@@ -1,12 +1,8 @@
 import { Router } from 'express';
 import usersCtrl from '../controllers/users/index.js';
 import {
-  requestResetEmailCtrl,
-  resetPasswordCtrl,
   getGoogleOAuthUrlCtrl,
   loginWithGoogleCtrl,
-  getCurrentUserCtrl,
-  updateUserCtrl,
 } from '../controllers/auth.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
@@ -42,13 +38,13 @@ router.post('/logout', ctrlWrapper(usersCtrl.logoutUserCtrl));
 router.post(
   '/send-reset-email',
   validateBody(requestResetEmailSchema),
-  ctrlWrapper(requestResetEmailCtrl),
+  ctrlWrapper(usersCtrl.requestResetEmailCtrl),
 );
 
 router.post(
   '/reset-pwd',
   validateBody(resetPasswordSchema),
-  ctrlWrapper(resetPasswordCtrl),
+  ctrlWrapper(usersCtrl.resetPasswordCtrl),
 );
 
 router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlCtrl));
@@ -59,14 +55,14 @@ router.post(
   ctrlWrapper(loginWithGoogleCtrl),
 );
 
-router.get('/current', authenticate, ctrlWrapper(getCurrentUserCtrl));
+router.get('/current', authenticate, ctrlWrapper(usersCtrl.getCurrentUserCtrl));
 
 router.patch(
   '/current',
   authenticate,
   upload.single('avatar'),
   validateBody(updateUserValidationSchema),
-  ctrlWrapper(updateUserCtrl),
+  ctrlWrapper(usersCtrl.updateUserCtrl),
 );
 
 export default router;
