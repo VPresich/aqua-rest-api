@@ -1,4 +1,4 @@
-import { setupSession } from '../auth.js';
+import { setupSession } from './setupSession.js';
 import { loginUser } from '../../services/users/loginUser.js';
 
 export const loginUserCtrl = async (req, res) => {

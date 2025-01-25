@@ -6,6 +6,8 @@ import { getCurrentUserCtrl } from './getCurrentUserCtrl.js';
 import { requestResetEmailCtrl } from './requestResetEmailCtrl.js';
 import { resetPasswordCtrl } from './resetPasswordCtrl.js';
 import { updateUserCtrl } from './updateUserCtrl.js';
+import { getGoogleOAuthUrlCtrl } from './getGoogleOAuthUrlCtrl.js';
+import { loginWithGoogleCtrl } from './loginWithGoogleCtrl.js';
 
 export default {
   registerUserCtrl,
@@ -16,7 +18,6 @@ export default {
   requestResetEmailCtrl,
   resetPasswordCtrl,
   updateUserCtrl,
-
-  //   googleAuth,
-  //   googleRedirect,
+  getGoogleOAuthUrlCtrl,
+  loginWithGoogleCtrl,
 };

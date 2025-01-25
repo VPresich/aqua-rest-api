@@ -22,7 +22,7 @@ const usersSchema = new Schema(
     },
     waterNorm: {
       type: Number,
-      default: 0.05,
+      default: 1.5,
       min: 0.05,
       max: 5.0,
     },

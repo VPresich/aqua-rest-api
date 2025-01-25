@@ -39,8 +39,6 @@ export const authenticate = async (req, res, next) => {
     next(createHttpError(401));
     return;
   }
-
   req.user = user;
-
   next();
 };

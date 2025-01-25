@@ -1,6 +1,6 @@
 import express from 'express';
 import waterRouters from './water.js';
-import authRouters from './auth.js';
+import authRouters from './users.js';
 
 const routers = express.Router();
 routers.use('/users', authRouters);

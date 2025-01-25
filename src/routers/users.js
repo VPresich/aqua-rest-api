@@ -1,18 +1,15 @@
 import { Router } from 'express';
 import usersCtrl from '../controllers/users/index.js';
-import {
-  getGoogleOAuthUrlCtrl,
-  loginWithGoogleCtrl,
-} from '../controllers/auth.js';
+
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
-import { updateUserValidationSchema } from '../validation/auth.js';
+import { updateUserValidationSchema } from '../validation/user.js';
 import {
   loginUserSchema,
   requestResetEmailSchema,
   resetPasswordSchema,
   loginWithGoogleOAuthSchema,
-} from '../validation/auth.js';
+} from '../validation/user.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { upload } from '../middlewares/multer.js';
 
@@ -47,12 +44,12 @@ router.post(
   ctrlWrapper(usersCtrl.resetPasswordCtrl),
 );
 
-router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlCtrl));
+router.get('/get-oauth-url', ctrlWrapper(usersCtrl.getGoogleOAuthUrlCtrl));
 
 router.post(
-  '/confirm-oauth',
+  '/google-login',
   validateBody(loginWithGoogleOAuthSchema),
-  ctrlWrapper(loginWithGoogleCtrl),
+  ctrlWrapper(usersCtrl.loginWithGoogleCtrl),
 );
 
 router.get('/current', authenticate, ctrlWrapper(usersCtrl.getCurrentUserCtrl));
