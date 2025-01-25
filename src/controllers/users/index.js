@@ -8,6 +8,7 @@ import { resetPasswordCtrl } from './resetPasswordCtrl.js';
 import { updateUserCtrl } from './updateUserCtrl.js';
 import { getGoogleOAuthUrlCtrl } from './getGoogleOAuthUrlCtrl.js';
 import { loginWithGoogleCtrl } from './loginWithGoogleCtrl.js';
+import { countAllUsersCtrl } from './countAllUsersCtrl.js';
 
 export default {
   registerUserCtrl,
@@ -20,4 +21,5 @@ export default {
   updateUserCtrl,
   getGoogleOAuthUrlCtrl,
   loginWithGoogleCtrl,
+  countAllUsersCtrl,
 };

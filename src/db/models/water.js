@@ -2,20 +2,20 @@ import { Schema, model } from 'mongoose';
 
 const waterSchema = new Schema(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'users',
+    date: {
+      type: String,
       required: true,
+      default: () => new Date().toISOString(),
     },
     volume: {
       type: Number,
       required: true,
       min: 50,
     },
-    date: {
-      type: String,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
       required: true,
-      default: () => new Date().toISOString(),
     },
   },
   { timestamps: true, versionKey: false, collection: 'water' },

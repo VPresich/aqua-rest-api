@@ -62,4 +62,6 @@ router.patch(
   ctrlWrapper(usersCtrl.updateUserCtrl),
 );
 
+router.get('/count', ctrlWrapper(usersCtrl.countAllUsersCtrl));
+
 export default router;
