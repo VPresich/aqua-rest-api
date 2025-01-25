@@ -678,7 +678,7 @@
         }
       }
     },
-    "/water/per-day": {
+    "/water/day": {
       "get": {
         "tags": [
           "Water"
@@ -743,7 +743,7 @@
         }
       }
     },
-    "/water/per-month": {
+    "/water/month": {
       "get": {
         "tags": [
           "Water"
