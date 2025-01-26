@@ -8,7 +8,7 @@ info:
   description: This is a documentation of AquaTrack app
 servers:
   - url: http://127.0.0.1:3000
-  - url: https://hydromate-rest-api.onrender.com
+  - url: https://aqua-rest-api.onrender.com
 tags:
   - name: Users
     description: Operation with users.
