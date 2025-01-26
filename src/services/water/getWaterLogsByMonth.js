@@ -18,10 +18,10 @@ export const getWaterLogsByMonth = async (userId, filter = {}) => {
   }, {});
 
   const monthItems = Object.entries(dayItems)
-    .filter(([date, totalWater]) => totalWater > 0)
-    .map(([date, totalWater]) => ({
+    .filter(([date, totalDayWater]) => totalDayWater > 0)
+    .map(([date, totalDayWater]) => ({
       date,
-      totalWater,
+      totalDayWater,
     }));
 
   return {
