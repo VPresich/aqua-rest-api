@@ -5,6 +5,6 @@ export const registerUserCtrl = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Successfully registered a user!',
-    data: { _id: user._id, name: user.name, email: user.email },
+    user: { _id: user._id, name: user.name, email: user.email },
   });
 };

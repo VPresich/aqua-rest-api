@@ -26,7 +26,7 @@ const usersSchema = new Schema(
       min: 0.05,
       max: 5.0,
     },
-    avatar: {
+    avatarURL: {
       type: String,
       default:
         'https://res.cloudinary.com/dirtbd4yk/image/upload/v1717687717/def-avatar-light_2x_vmnmb8.jpg',

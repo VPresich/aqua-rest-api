@@ -30,6 +30,6 @@ export const updateUserCtrl = async (req, res) => {
   res.json({
     status: 200,
     message: `Successfully patched the user!`,
-    data: result.user,
+    user: result.user,
   });
 };

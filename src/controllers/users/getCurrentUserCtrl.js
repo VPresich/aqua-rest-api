@@ -3,6 +3,6 @@ export const getCurrentUserCtrl = async (req, res) => {
   res.json({
     status: 200,
     message: 'Successfully found user info!',
-    data: user,
+    user,
   });
 };
