@@ -29,7 +29,7 @@ const usersSchema = new Schema(
     avatarURL: {
       type: String,
       default:
-        'https://res.cloudinary.com/dirtbd4yk/image/upload/v1717687717/def-avatar-light_2x_vmnmb8.jpg',
+        'https://res.cloudinary.com/dirtbd4yk/image/upload/v1737918880/defaultUser_xhjnc5.png',
       //'https://res.cloudinary.com/dirtbd4yk/image/upload/v1717687717/def-avatar-light_1x_fkwy6u.jpg'
     },
   },
