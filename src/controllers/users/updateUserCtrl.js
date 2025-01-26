@@ -13,13 +13,17 @@ export const updateUserCtrl = async (req, res) => {
   if (avatar) {
     if (env('ENABLE_CLOUDINARY') === 'true') {
       avatarUrl = await saveFileToCloudinary(avatar);
+      console.log('AVATARURL', avatarUrl);
     } else {
       avatarUrl = await saveFileToUploadDir(avatar);
     }
   }
 
   const payload = { ...req.body };
-  if (avatar && avatarUrl) payload.avatar = avatarUrl;
+
+  if (avatar && avatarUrl) {
+    payload.avatarURL = avatarUrl;
+  }
 
   const result = await updateUser(userId, payload);
 
