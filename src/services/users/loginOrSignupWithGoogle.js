@@ -22,17 +22,19 @@ export const loginOrSignupWithGoogle = async (code) => {
     });
     const newSession = createSession();
 
-    return await SessionsCollection.create({
+    const session = await SessionsCollection.create({
       userId: user._id,
       ...newSession,
     });
+    return { session, user };
   } else {
     await SessionsCollection.deleteMany({ userId: user._id });
     const newSession = createSession();
 
-    return await SessionsCollection.create({
+    const session = await SessionsCollection.create({
       userId: user._id,
       ...newSession,
     });
+    return { session, user };
   }
 };

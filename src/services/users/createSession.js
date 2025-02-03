@@ -4,9 +4,11 @@ import {
   REFRESH_TOKEN_LIFETIME,
 } from '../../constants/index.js';
 
+const generateSecureToken = (size = 30) => randomBytes(size).toString('base64');
+
 export const createSession = () => {
-  const accessToken = randomBytes(30).toString('base64');
-  const refreshToken = randomBytes(30).toString('base64');
+  const accessToken = generateSecureToken();
+  const refreshToken = generateSecureToken();
 
   return {
     accessToken,
