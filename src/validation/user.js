@@ -28,10 +28,10 @@ export const loginWithGoogleOAuthSchema = Joi.object({
 });
 
 export const updateUserValidationSchema = Joi.object({
-  name: Joi.string().min(2).max(20).messages({
+  name: Joi.string().min(2).max(40).messages({
     'string.base': 'Name must be a string.',
     'string.min': 'Name must be at least 3 characters long.',
-    'string.max': 'Name must be at most 15 characters long.',
+    'string.max': 'Name must be at most 40 characters long.',
   }),
 
   email: Joi.string().email().messages({
