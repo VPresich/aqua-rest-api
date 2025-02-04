@@ -14,7 +14,7 @@ export const generateAuthUrl = () =>
       'https://www.googleapis.com/auth/userinfo.email',
       'https://www.googleapis.com/auth/userinfo.profile',
     ],
-    prompt: 'select_account',
+    prompt: 'consent select_account',
   });
 
 export const validateCode = async (code) => {
