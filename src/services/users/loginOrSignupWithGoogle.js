@@ -13,6 +13,7 @@ export const loginOrSignupWithGoogle = async (code) => {
   if (!payload) throw createHttpError(401);
 
   let user = await UsersCollection.findOne({ email: payload.email });
+
   if (!user) {
     const password = await bcrypt.hash(randomBytes(10), 10);
     user = await UsersCollection.create({
@@ -20,21 +21,16 @@ export const loginOrSignupWithGoogle = async (code) => {
       name: getFullNameFromGoogleTokenPayload(payload),
       password,
     });
-    const newSession = createSession();
-
-    const session = await SessionsCollection.create({
-      userId: user._id,
-      ...newSession,
-    });
-    return { session, user };
   } else {
     await SessionsCollection.deleteMany({ userId: user._id });
-    const newSession = createSession();
-
-    const session = await SessionsCollection.create({
-      userId: user._id,
-      ...newSession,
-    });
-    return { session, user };
   }
+
+  const newSession = createSession();
+  console.log('CREATESESSION');
+  const session = await SessionsCollection.create({
+    userId: user._id,
+    ...newSession,
+  });
+
+  return { session, user };
 };
