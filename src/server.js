@@ -31,6 +31,7 @@ export const setupServer = () => {
         'https://aqua-rest-api.onrender.com',
         'http://localhost:3000',
         'http://localhost:5173',
+        'https://aqua-react.vercel.app',
       ],
       credentials: true,
     }),
