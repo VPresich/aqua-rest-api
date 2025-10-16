@@ -7,7 +7,8 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import handlebars from 'handlebars';
 import { SMTP } from '../../constants/index.js';
-import { sendEmail } from '../../utils/sendMail.js';
+//import { sendEmail } from '../../utils/sendMail.js';
+import { sendEmail } from '../../utils/sendMailBrevo.js';
 
 export const requestResetToken = async (email) => {
   console.log(' [1] Начало requestResetToken, email:', email);
