@@ -11,13 +11,10 @@ import { SMTP } from '../../constants/index.js';
 import { sendEmail } from '../../utils/sendMailBrevo.js';
 
 export const requestResetToken = async (email) => {
-  console.log(' [1] Начало requestResetToken, email:', email);
-
   const user = await UsersCollection.findOne({ email });
   if (!user) {
     throw createHttpError(404, 'User not found!');
   }
-  console.log('EMAIL:', email);
 
   const resetToken = jwt.sign(
     {
@@ -29,25 +26,21 @@ export const requestResetToken = async (email) => {
       expiresIn: '5m',
     },
   );
-  console.log('RESETTOKEN:', resetToken);
 
   const resetPasswordTemplatePath = path.join(
     TEMPLATES_DIR,
     'reset-password-email.html',
   );
-  console.log('TEMPLATEPATH:', resetPasswordTemplatePath);
 
   const templateSource = (
     await fs.readFile(resetPasswordTemplatePath)
   ).toString();
   const template = handlebars.compile(templateSource);
-  console.log('TEMPLATE:', template);
 
   const html = template({
     name: user.name,
     link: `${env('APP_DOMAIN')}/password/reset/${resetToken}`,
   });
-  console.log('TEST HTML:', html);
 
   try {
     await sendEmail({

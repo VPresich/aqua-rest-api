@@ -26,7 +26,6 @@ export const loginOrSignupWithGoogle = async (code) => {
   }
 
   const newSession = createSession();
-  console.log('CREATESESSION');
   const session = await SessionsCollection.create({
     userId: user._id,
     ...newSession,

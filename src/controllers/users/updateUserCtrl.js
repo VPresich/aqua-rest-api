@@ -13,7 +13,6 @@ export const updateUserCtrl = async (req, res) => {
   if (avatar) {
     if (env('ENABLE_CLOUDINARY') === 'true') {
       avatarUrl = await saveFileToCloudinary(avatar);
-      console.log('AVATARURL', avatarUrl);
     } else {
       avatarUrl = await saveFileToUploadDir(avatar);
     }

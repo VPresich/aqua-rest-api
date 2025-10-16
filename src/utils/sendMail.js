@@ -15,16 +15,10 @@ export const sendEmail = async (options) => {
   });
 
   try {
-    console.log('⏳ Проверяю соединение...');
     await transporter.verify();
-    console.log('✅ SMTP подключение успешно!');
   } catch (err) {
-    console.error('Ошибка при проверке SMTP:', err.message);
-    throw createHttpError(500, `Ошибка при проверке SMTP: ${err.message}`);
+    throw createHttpError(500, `Error verifying SMTP: ${err.message}`);
   }
 
-  console.log(' Отправка письма...', options);
-
   await transporter.sendMail(options);
-  console.log('Письмо отправлено:');
 };

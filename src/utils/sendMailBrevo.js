@@ -5,8 +5,6 @@ import { SMTP } from '../constants/index.js';
 
 export const sendEmail = async ({ to, subject, html }) => {
   try {
-    console.log('Отправка письма через Brevo API...');
-
     const response = await axios.post(
       'https://api.brevo.com/v3/smtp/email',
       {
@@ -26,14 +24,12 @@ export const sendEmail = async ({ to, subject, html }) => {
         timeout: 5000,
       },
     );
-
-    console.log('Письмо отправлено:', response.data);
     return response.data;
   } catch (err) {
     console.error(
-      'Ошибка при отправке письма через Brevo API:',
+      'Error of send email through Brevo API:',
       err.response?.data || err.message,
     );
-    throw createHttpError(500, 'Не удалось отправить email через Brevo API');
+    throw createHttpError(500, 'Failed to send email through Brevo API');
   }
 };
